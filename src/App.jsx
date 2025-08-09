@@ -1,12 +1,12 @@
 import movies from "../movies.json";
 import { useState } from "react";
 import "./App.css";
-import Pelicula from "./components/Pelicula.jsx";
+import ListaPeliculas from "./components/ListaPeliculas.jsx";
 
 function App() {
   return (
     <>
-      <Pelicula></Pelicula>
+      <ListaPeliculas></ListaPeliculas>
     </>
   );
 }
