@@ -1,10 +1,14 @@
 import movies from "../movies.json";
 import { useState } from "react";
 import "./App.css";
+import Pelicula from "./components/Pelicula.jsx";
 
 function App() {
-  console.log(movies);
-  return <></>;
+  return (
+    <>
+      <Pelicula></Pelicula>
+    </>
+  );
 }
 
 export default App;

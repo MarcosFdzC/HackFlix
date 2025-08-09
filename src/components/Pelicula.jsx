@@ -1,8 +1,12 @@
+//Imports
+import movies from "../../movies.json";
+
 export default function () {
   // logica
+  console.log(movies);
   return (
     <>
-      {/* aca escribimos todos los componentes que queremos imprimir en pantalla */}
+      <h1>{movies[0].title}</h1>
     </>
   );
 }
