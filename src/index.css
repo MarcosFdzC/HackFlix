@@ -1,0 +1,82 @@
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background principal con efecto vintage/gastado */
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  min-height: 100vh;
+
+  /* Background base con color vintage */
+  background:
+    /* Capa de ruido/textura */
+    radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(210, 180, 140, 0.05) 0%, transparent 50%),
+
+    /* Manchas de envejecimiento */
+    radial-gradient(ellipse at 10% 30%, rgba(101, 67, 33, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 70%, rgba(139, 69, 19, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 60% 10%, rgba(160, 82, 45, 0.04) 0%, transparent 30%),
+
+    /* Gradiente principal */
+    linear-gradient(135deg,
+      #f4f1e8 0%,     /* Beige claro */
+      #e8dcc0 25%,    /* Beige medio */
+      #d4c4a0 50%,    /* Sepia claro */
+      #c8b99c 75%,    /* Sepia medio */
+      #b8a082 100%    /* Sepia oscuro */
+    );
+
+  /* Efecto de papel viejo con pseudo-elementos */
+  position: relative;
+}
+
+/* Capa adicional de textura con pseudo-elemento */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+
+  /* Patrón de puntos para simular textura de papel */
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(139, 69, 19, 0.15) 1px, transparent 0);
+  background-size: 20px 20px;
+
+  /* Efecto de vignette (oscurecimiento en bordes) */
+  box-shadow: inset 0 0 200px rgba(101, 67, 33, 0.1);
+}
+
+/* Efecto adicional de envejecimiento con otro pseudo-elemento */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+
+  /* Manchas irregulares para efecto gastado */
+  background:
+    radial-gradient(ellipse 300px 200px at 15% 25%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 250px 180px at 85% 75%, rgba(160, 82, 45, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 200px 300px at 70% 15%, rgba(101, 67, 33, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse 180px 220px at 30% 85%, rgba(139, 69, 19, 0.03) 0%, transparent 50%);
+}
+
+/* Contenedor principal */
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}

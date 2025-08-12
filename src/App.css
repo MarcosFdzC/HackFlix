@@ -1,0 +1,89 @@
+/* Estilos específicos para la aplicación HackFlix */
+
+/* Contenedor principal de la app */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: linear-gradient(135deg, #f4e4bc 0%, #e6d3a3 50%, #d4c5a0 100%);
+}
+
+/* Estilos para las tarjetas de películas con efecto vintage */
+.card {
+  background: rgba(248, 245, 235, 0.9) !important;
+  border: 2px solid rgba(139, 69, 19, 0.2) !important;
+  box-shadow:
+    0 4px 8px rgba(101, 67, 33, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+  margin: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(101, 67, 33, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(139, 69, 19, 0.4) !important;
+}
+
+/* Títulos con efecto vintage */
+.card-title {
+  color: #654321 !important;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+}
+
+/* Botones con estilo vintage */
+.btn-warning {
+  background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%) !important;
+  border: 2px solid #8b6914 !important;
+  color: #2c1810 !important;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 2px 4px rgba(101, 67, 33, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #e6c547 0%, #c9a52f 100%) !important;
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 8px rgba(101, 67, 33, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Contenedor de películas */
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px 20px;
+  gap: 15px;
+  flex: 1;
+}
+
+/* Efectos adicionales para imágenes */
+.card-img-top {
+  border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  filter: sepia(10%) contrast(110%) brightness(105%);
+}
+
+/* Preparación para header y footer - removido ya que el header tiene sus propios estilos */
+
+.footer-container {
+  background: rgba(101, 67, 33, 0.1);
+  backdrop-filter: blur(5px);
+  border-top: 2px solid rgba(139, 69, 19, 0.2);
+  box-shadow: 0 -2px 10px rgba(101, 67, 33, 0.15);
+  margin-top: auto;
+}
