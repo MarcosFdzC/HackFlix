@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <Carousel></Carousel>
       <main className="movies-container">
         <ListaPeliculas />
       </main>
