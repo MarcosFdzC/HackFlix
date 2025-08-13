@@ -1,5 +1,5 @@
 //función helper para interpretar el poster_path
-import { posterUrl } from "../helpers/imagenes.js";
+import { posterUrl } from "../helpers/funciones.js";
 
 export default function ({ img, titulo }) {
   // logica

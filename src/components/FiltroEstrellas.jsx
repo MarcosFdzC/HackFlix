@@ -1,8 +1,21 @@
-export default function () {
-  // logica
+import ReactStars from "react-rating-stars-component";
+
+export default function FiltroEstrellas({ onChange }) {
+  const ratingChanged = (newRating) => {
+    console.log(newRating); // aquí recibís el valor (1 a 5)
+    if (onChange) {
+      onChange(newRating);
+    }
+  };
+
   return (
     <>
-      {/* aca escribimos todos los componentes que queremos imprimir en pantalla */}
+      <ReactStars
+        count={5}
+        onChange={ratingChanged}
+        size={30}
+        activeColor="#ffd700"
+      />
     </>
   );
 }

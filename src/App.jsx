@@ -3,6 +3,7 @@ import "./App.css";
 import ListaPeliculas from "./components/ListaPeliculas.jsx";
 import Header from "./components/Header.jsx";
 import Carousel from "./components/Carousel.jsx";
+import FiltroEstrellas from "./components/FiltroEstrellas.jsx";
 
 function App() {
   return (
@@ -10,7 +11,6 @@ function App() {
       <Header />
 
       <Carousel></Carousel>
-
       <main className="movies-container">
         <ListaPeliculas />
       </main>
