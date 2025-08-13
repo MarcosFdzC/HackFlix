@@ -1,5 +1,4 @@
-import movies from "../movies.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import ListaPeliculas from "./components/ListaPeliculas.jsx";
 import Header from "./components/Header.jsx";
