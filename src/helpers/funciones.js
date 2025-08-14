@@ -14,7 +14,8 @@ export async function llamadaApi() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: "Bearer TU_TOKEN_AQUI",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWVhNDMyOTA4Y2I3NjFmM2VlNGM3ZDJkMTRjMGQ2OSIsIm5iZiI6MTc1NDk1NTUxMC4zMDMsInN1YiI6IjY4OWE3ZWY2YTEwMGZmZmYyMDVkMTdkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zvXAn13F1mvO1FG01juhFeI1qwBZ4Lgdxj3B-vlALkE",
     },
   };
 

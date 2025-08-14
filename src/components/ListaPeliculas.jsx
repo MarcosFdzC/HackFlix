@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { llamadaApi, posterUrl } from "../helpers/funciones";
+import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
 
 export default function () {
