@@ -1,94 +1,125 @@
-/* Estilos específicos para la aplicación HackFlix */
-
-/* Contenedor principal de la app */
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
-  background: linear-gradient(135deg, #f4e4bc 0%, #e6d3a3 50%, #d4c5a0 100%);
 }
 
-/* Estilos para las tarjetas de películas con efecto vintage */
+.movies-container {
+  background: linear-gradient(180deg, #F5F5DC 0%, #FFFACD 100%);
+  padding: 40px 20px;
+  flex: 1;
+}
+
+.movies-container .container::before {
+  content: '• • •';
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #8B2635;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
 .card {
-  background: rgba(248, 245, 235, 0.9) !important;
-  border: 2px solid rgba(139, 69, 19, 0.2) !important;
-  box-shadow: 0 4px 8px rgba(101, 67, 33, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  width: 180px !important;
+  background: #FFF !important;
+  border: 3px solid #8B2635 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
   transition: all 0.3s ease;
-  backdrop-filter: blur(2px);
-  margin: 10px;
+  margin: 0 !important;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(101, 67, 33, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border-color: rgba(139, 69, 19, 0.4) !important;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Títulos con efecto vintage */
+.card-img-top {
+  border-radius: 5px 5px 0 0 !important;
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 2px solid #8B2635;
+}
+
+.card-body {
+  padding: 15px !important;
+  text-align: center;
+  background: #FFF;
+}
+
 .card-title {
-  color: #654321 !important;
-  font-family: "Georgia", "Times New Roman", serif !important;
+  color: #8B2635 !important;
+  font-family: 'Bebas Neue', cursive !important;
+  font-size: 1.1rem !important;
   font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px !important;
 }
 
-/* Botones con estilo vintage */
 .btn-warning {
-  background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%) !important;
-  border: 2px solid #8b6914 !important;
-  color: #2c1810 !important;
+  background: linear-gradient(145deg, #FFD700, #FFA500) !important;
+  border: 2px solid #8B2635 !important;
+  border-radius: 20px !important;
+  color: #8B2635 !important;
+  font-family: 'Bebas Neue', cursive !important;
   font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 4px rgba(101, 67, 33, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  padding: 8px 16px !important;
   transition: all 0.3s ease;
 }
 
 .btn-warning:hover {
-  background: linear-gradient(135deg, #e6c547 0%, #c9a52f 100%) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(101, 67, 33, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(145deg, #FFA500, #FFD700) !important;
+  transform: translateY(-2px);
+  color: #8B2635 !important;
 }
 
-/* Contenedor de películas */
-.movies-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 30px 20px;
-  gap: 15px;
-  flex: 1;
-}
-
-/* Efectos adicionales para imágenes */
-.card-img-top {
-  border-bottom: 2px solid rgba(139, 69, 19, 0.1);
-  transition: all 0.3s ease;
-}
-
-.card:hover .card-img-top {
-  filter: sepia(10%) contrast(110%) brightness(105%);
-}
-
-/* Preparación para header y footer - removido ya que el header tiene sus propios estilos */
-
-.footer-container {
-  background: rgba(101, 67, 33, 0.1);
-  backdrop-filter: blur(5px);
-  border-top: 2px solid rgba(139, 69, 19, 0.2);
-  box-shadow: 0 -2px 10px rgba(101, 67, 33, 0.15);
-  margin-top: auto;
-}
 .carrusel {
-  border-top: solid 5px #8b4513;
-  border-bottom: solid 5px #8b4513;
-  margin-top: 20px;
+  margin: 20px 0;
 }
+
 .carousel-img {
   height: 500px;
   object-fit: cover;
+  filter: sepia(10%) contrast(110%);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 150px !important;
+  }
+  .card-img-top {
+    height: 200px;
+  }
+  .carousel-img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 130px !important;
+  }
+  .card-img-top {
+    height: 180px;
+  }
+  .carousel-img {
+    height: 280px;
+  }
 }
