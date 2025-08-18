@@ -1,7 +1,7 @@
 //función helper para interpretar el poster_path
 import { posterUrl } from "../helpers/funciones.js";
 
-export default function ({ img, titulo }) {
+export default function Pelicula({ img, titulo }) {
   // logica
   const src = posterUrl(img, "w342");
   return (
