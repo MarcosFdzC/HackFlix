@@ -1,21 +1,20 @@
-import ReactStars from "react-rating-stars-component";
+import { useState } from "react";
+import { Rating } from "react-simple-star-rating";
 
-export default function FiltroEstrellas({ onChange }) {
-  const ratingChanged = (newRating) => {
-    console.log(newRating); // aquí recibís el valor (1 a 5)
-    if (onChange) {
-      onChange(newRating);
-    }
+export default function () {
+  const [rating, setRating] = useState(0);
+  const handleRating = (rate) => {
+    setRating(rate);
   };
-
   return (
     <>
-      <ReactStars
-        count={5}
-        onChange={ratingChanged}
-        size={30}
-        activeColor="#ffd700"
-      />
+      <Rating
+        onClick={setRating}
+        size={40}
+        transition
+        fillColor="#ffd700"
+        emptyColor="gray"
+      ></Rating>
     </>
   );
 }

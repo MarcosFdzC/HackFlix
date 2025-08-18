@@ -5,7 +5,7 @@ export default function ({ img, titulo }) {
   // logica
   const src = posterUrl(img, "w342");
   return (
-    <div className="col">
+    <div className="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center">
       <div className="card" style={{ width: "15rem" }}>
         <img src={src} className="card-img-top" alt={titulo} />
         <div className="card-body">
