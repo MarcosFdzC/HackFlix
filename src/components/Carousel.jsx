@@ -6,7 +6,7 @@ function CarouselFadeExample() {
       <Carousel.Item>
         <img
           className="d-block w-100 carousel-img"
-          src="https://www.filmmakersacademy.com/wp-content/uploads/2020/01/910E40A2-E90B-402B-ADF5-F200EF52D4DF.jpg"
+          src="https://i.redd.it/e758ahk8gzt71.png"
           alt="First slide"
         />
         <Carousel.Caption></Carousel.Caption>
@@ -24,7 +24,7 @@ function CarouselFadeExample() {
       <Carousel.Item>
         <img
           className="d-block w-100 carousel-img"
-          src="https://i.redd.it/e758ahk8gzt71.png"
+          src="https://cdna.artstation.com/p/assets/images/images/076/353/374/large/giant-thoughts-1917.jpg?1716815682"
           alt="Third slide"
         />
         <Carousel.Caption></Carousel.Caption>

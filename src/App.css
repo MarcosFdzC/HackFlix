@@ -5,17 +5,17 @@
 }
 
 .movies-container {
-  background: linear-gradient(180deg, #F5F5DC 0%, #FFFACD 100%);
+  background: linear-gradient(180deg, #f5f5dc 0%, #fffacd 100%);
   padding: 40px 20px;
   flex: 1;
 }
 
 .movies-container .container::before {
-  content: '• • •';
+  content: "• • •";
   display: block;
   text-align: center;
   font-size: 1.5rem;
-  color: #8B2635;
+  color: #8b2635;
   margin-bottom: 20px;
   letter-spacing: 10px;
 }
@@ -35,8 +35,8 @@
 
 .card {
   width: 180px !important;
-  background: #FFF !important;
-  border: 3px solid #8B2635 !important;
+  background: #fff !important;
+  border: 3px solid #8b2635 !important;
   border-radius: 8px !important;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
   transition: all 0.3s ease;
@@ -52,18 +52,18 @@
   border-radius: 5px 5px 0 0 !important;
   height: 240px;
   object-fit: cover;
-  border-bottom: 2px solid #8B2635;
+  border-bottom: 2px solid #8b2635;
 }
 
 .card-body {
   padding: 15px !important;
   text-align: center;
-  background: #FFF;
+  background: #fff;
 }
 
 .card-title {
-  color: #8B2635 !important;
-  font-family: 'Bebas Neue', cursive !important;
+  color: #8b2635 !important;
+  font-family: "Bebas Neue", cursive !important;
   font-size: 1.1rem !important;
   font-weight: bold;
   text-transform: uppercase;
@@ -72,11 +72,11 @@
 }
 
 .btn-warning {
-  background: linear-gradient(145deg, #FFD700, #FFA500) !important;
-  border: 2px solid #8B2635 !important;
+  background: linear-gradient(145deg, #ffd700, #ffa500) !important;
+  border: 2px solid #8b2635 !important;
   border-radius: 20px !important;
-  color: #8B2635 !important;
-  font-family: 'Bebas Neue', cursive !important;
+  color: #8b2635 !important;
+  font-family: "Bebas Neue", cursive !important;
   font-weight: bold;
   font-size: 0.9rem !important;
   text-transform: uppercase;
@@ -85,9 +85,9 @@
 }
 
 .btn-warning:hover {
-  background: linear-gradient(145deg, #FFA500, #FFD700) !important;
+  background: linear-gradient(145deg, #ffa500, #ffd700) !important;
   transform: translateY(-2px);
-  color: #8B2635 !important;
+  color: #8b2635 !important;
 }
 
 .carrusel {
@@ -96,7 +96,6 @@
 
 .carousel-img {
   height: 500px;
-  object-fit: cover;
   filter: sepia(10%) contrast(110%);
 }
 
