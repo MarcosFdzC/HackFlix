@@ -4,7 +4,7 @@ import Pelicula from "./Pelicula";
 import FiltroEstrellas from "./FiltroEstrellas";
 import { Rating } from "react-simple-star-rating";
 
-export default function () {
+export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
   const [filtradas, setFiltradas] = useState([]);
   const [filtro, setFiltro] = useState(0);
@@ -38,6 +38,7 @@ export default function () {
     calcularRating(rate);
     console.log(filtro);
   };
+  console.log(peliculas);
   return (
     <div className="container text-center">
       <Rating onClick={filtrar}></Rating>
@@ -47,6 +48,9 @@ export default function () {
             key={peli.id}
             img={peli.poster_path}
             titulo={peli.title}
+            fecha={peli.release_date}
+            rating={peli.vote_average}
+            informacion={peli.overview}
           ></Pelicula>
         ))}
       </div>
