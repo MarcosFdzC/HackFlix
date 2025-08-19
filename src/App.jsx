@@ -4,7 +4,6 @@ import Header from "./components/Header.jsx";
 import Carousel from "./components/Carousel.jsx";
 import Footer from "./components/Footer.jsx";
 import FiltroEstrellas from "./components/FiltroEstrellas.jsx";
-import ReactStars from "react-rating-stars-component";
 
 const ratingChanged = (newRating) => {
   console.log(newRating);

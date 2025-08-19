@@ -6,16 +6,15 @@ import { Rating } from "react-simple-star-rating";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
-  const [filtradas, setFiltradas] = useState([]);
   const [filtro, setFiltro] = useState(0);
   //Esta funcion llama a la api y guarda del resultado en peliculas
   useEffect(() => {
-    llamadaApi()
+    llamadaApi(filtro)
       .then((resultado) => setPeliculas(resultado))
       .catch((err) => console.error(err));
-  }, []);
+  }, [filtro]);
   //con esta funcion interpretamos el rate y lo transformamos en el filtro que necesitamos
-  const calcularRating = (rate) => {
+  const filtrar = (rate) => {
     switch (rate) {
       case 1:
         setFiltro(0);
@@ -33,10 +32,6 @@ export default function ListaPeliculas() {
         setFiltro(8);
         break;
     }
-  };
-  const filtrar = (rate) => {
-    calcularRating(rate);
-    console.log(filtro);
   };
   console.log(peliculas);
   return (
