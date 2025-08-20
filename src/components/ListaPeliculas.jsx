@@ -64,10 +64,10 @@ export default function ListaPeliculas() {
 
   const renderizarContenido = () => {
     if (cargando && peliculas.length === 0)
-      return <h4 style={{ marginTop: "20px" }}>Cargando...</h4>;
+      return <h4 className="text-center mt-4">Cargando...</h4>;
     if (!cargando && peliculas.length === 0)
       return (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>
+        <p className="text-center mt-4">
           <b>
             Lo sentimos, no se encontraron películas con el rating solicitado.
           </b>
@@ -78,9 +78,9 @@ export default function ListaPeliculas() {
         dataLength={peliculas.length}
         next={cargarMasPeliculas}
         hasMore={masPaginas}
-        loader={<h4 style={{ marginTop: "20px" }}>Cargando...</h4>}
+        loader={<h4 className="text-center my-4">Cargando...</h4>}
         endMessage={
-          <p style={{ textAlign: "center", marginTop: "20px" }}>
+          <p className="text-center my-4">
             <b>No hay más películas para mostrar</b>
           </p>
         }
@@ -108,7 +108,7 @@ export default function ListaPeliculas() {
         initialValue={0}
         size={40}
         transition
-        fillColor="#ffd700"
+        fillColor="orange"
         emptyColor="gray"
       />
       {renderizarContenido()}
