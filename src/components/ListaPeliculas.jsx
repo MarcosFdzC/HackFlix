@@ -1,66 +1,84 @@
 import { useState, useEffect } from "react";
 import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
-/*import FiltroEstrellas from "./FiltroEstrellas";
-import { Rating } from "react-simple-star-rating";*/
+/*import FiltroEstrellas from "./FiltroEstrellas";*/
+import { Rating } from "react-simple-star-rating";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
-  /*const [filtro, setFiltro] = useState(0);*/
+  const [filtro, setFiltro] = useState(0);
   const [pagina, setPagina] = useState(1);
   const [masPaginas, setMasPaginas] = useState(true);
-  //Esta funcion llama a la api y guarda del resultado en peliculas
+  const [cargando, setCargando] = useState(true);
 
+  //Esta funcion llama a la api y guarda del resultado en peliculas
   useEffect(() => {
-    llamadaApi(1)
-      .then((resultado) => setPeliculas(resultado))
-      .catch((err) => console.error(err));
-  }, []);
-  //con esta funcion interpretamos el rate y lo transformamos en el filtro que necesitamos
-  /*const filtrar = (rate) => {
-    switch (rate) {
-      case 1:
-        setFiltro(0);
-        break;
-      case 2:
-        setFiltro(2);
-        break;
-      case 3:
-        setFiltro(4);
-        break;
-      case 4:
-        setFiltro(6);
-        break;
-      default:
-        setFiltro(8);
-        break;
-    }
-  };*/
+    setCargando(true);
+    setPagina(1);
+    setMasPaginas(true);
+
+    llamadaApi(1, filtro)
+      .then((resultado) => {
+        setPeliculas(resultado);
+        setCargando(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setCargando(false);
+      });
+  }, [filtro]);
+
+  // Funciones
 
   const cargarMasPeliculas = () => {
     const paginaSiguiente = pagina + 1;
 
-    llamadaApi(paginaSiguiente)
+    llamadaApi(paginaSiguiente, filtro)
       .then((peliculasNuevas) => {
         setPeliculas((peliculasActuales) => [
           ...peliculasActuales,
           ...peliculasNuevas,
         ]);
-
         if (peliculasNuevas.length === 0 || peliculasNuevas.length < 20) {
           setMasPaginas(false);
         }
       })
-
       .catch((err) => console.error(err));
-
     setPagina(paginaSiguiente);
   };
 
-  /*console.log(peliculas);*/
+  const filtrar = (rate) => {
+    const nuevoFiltro = rate > 0 ? rate * 2 - 2 : 0;
+    setFiltro(nuevoFiltro);
+  };
+
+  const renderizarContenido = () => {
+    if (cargando) {
+      return <h4 style={{ marginTop: "20px" }}>Cargando...</h4>;
+    }
+
+    if (peliculas.length === 0) {
+      return (
+        <p style={{ textAlign: "center", marginTop: "20px" }}>
+          <b>
+            Lo sentimos, no se encontraron películas con el rating solicitado
+          </b>
+        </p>
+      );
+    }
+  };
   return (
     <div className="container text-center">
+      <Rating
+        onClick={filtrar}
+        initialValue={0}
+        size={40}
+        transition
+        fillColor="orange"
+        emptyColor="gray"
+      />
+
       <InfiniteScroll
         dataLength={peliculas.length}
         next={cargarMasPeliculas}
@@ -83,10 +101,30 @@ export default function ListaPeliculas() {
               fecha={peli.release_date}
               rating={peli.vote_average}
               informacion={peli.overview}
-            ></Pelicula>
+            />
           ))}
         </div>
       </InfiniteScroll>
     </div>
   );
 }
+
+/*const filtrar = (rate) => {
+    switch (rate) {
+      case 1:
+        setFiltro(0);
+        break;
+      case 2:
+        setFiltro(2);
+        break;
+      case 3:
+        setFiltro(4);
+        break;
+      case 4:
+        setFiltro(6);
+        break;
+      default:
+        setFiltro(8);
+        break;
+    }
+  };*/

@@ -6,8 +6,12 @@ export function posterUrl(path, size) {
   }
 }
 
-export async function llamadaApi(pagina) {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=popularity.desc`;
+export async function llamadaApi(pagina, filtro) {
+  let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=popularity.desc`;
+
+  if (filtro > 0) {
+    url += `&vote_average.gte=${filtro}&vote_count.gte=50`;
+  }
 
   //Funcion fetch
   /*export async function llamadaApi(filtro) {
