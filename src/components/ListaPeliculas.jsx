@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
-/*import FiltroEstrellas from "./FiltroEstrellas";*/
 import { Rating } from "react-simple-star-rating";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -12,12 +11,10 @@ export default function ListaPeliculas() {
   const [masPaginas, setMasPaginas] = useState(true);
   const [cargando, setCargando] = useState(true);
 
-  //Esta funcion llama a la api y guarda del resultado en peliculas
   useEffect(() => {
     setCargando(true);
     setPagina(1);
     setMasPaginas(true);
-
     llamadaApi(1, filtro)
       .then((resultado) => {
         setPeliculas(resultado);
@@ -29,11 +26,8 @@ export default function ListaPeliculas() {
       });
   }, [filtro]);
 
-  // Funciones
-
   const cargarMasPeliculas = () => {
     const paginaSiguiente = pagina + 1;
-
     llamadaApi(paginaSiguiente, filtro)
       .then((peliculasNuevas) => {
         setPeliculas((peliculasActuales) => [
@@ -49,67 +43,6 @@ export default function ListaPeliculas() {
   };
 
   const filtrar = (rate) => {
-    const nuevoFiltro = rate > 0 ? rate * 2 - 2 : 0;
-    setFiltro(nuevoFiltro);
-  };
-
-  const renderizarContenido = () => {
-    if (cargando) {
-      return <h4 style={{ marginTop: "20px" }}>Cargando...</h4>;
-    }
-
-    if (peliculas.length === 0) {
-      return (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>
-          <b>
-            Lo sentimos, no se encontraron películas con el rating solicitado
-          </b>
-        </p>
-      );
-    }
-  };
-  return (
-    <div className="container text-center">
-      <Rating
-        onClick={filtrar}
-        initialValue={0}
-        size={40}
-        transition
-        fillColor="orange"
-        emptyColor="gray"
-      />
-
-      <InfiniteScroll
-        dataLength={peliculas.length}
-        next={cargarMasPeliculas}
-        hasMore={masPaginas}
-        loader={<h4 style={{ marginTop: "20px" }}>Cargando...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center", marginTop: "20px" }}>
-            <b>No hay más películas para mostrar</b>
-          </p>
-        }
-      >
-        {/*<Rating onClick={filtrar}></Rating>*/}
-
-        <div className="row">
-          {peliculas.map((peli) => (
-            <Pelicula
-              key={`${peli.id}-${Math.random()}`}
-              img={peli.poster_path}
-              titulo={peli.title}
-              fecha={peli.release_date}
-              rating={peli.vote_average}
-              informacion={peli.overview}
-            />
-          ))}
-        </div>
-      </InfiniteScroll>
-    </div>
-  );
-}
-
-/*const filtrar = (rate) => {
     switch (rate) {
       case 1:
         setFiltro(0);
@@ -127,4 +60,60 @@ export default function ListaPeliculas() {
         setFiltro(8);
         break;
     }
-  };*/
+  };
+
+  const renderizarContenido = () => {
+    if (cargando && peliculas.length === 0) {
+      return <h4 style={{ marginTop: "20px" }}>Cargando...</h4>;
+    }
+    if (!cargando && peliculas.length === 0) {
+      return (
+        <p style={{ textAlign: "center", marginTop: "20px" }}>
+          <b>
+            Lo sentimos, no se encontraron películas con el rating solicitado.
+          </b>
+        </p>
+      );
+    }
+    return (
+      <InfiniteScroll
+        dataLength={peliculas.length}
+        next={cargarMasPeliculas}
+        hasMore={masPaginas}
+        loader={<h4 style={{ marginTop: "20px" }}>Cargando...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            <b>No hay más películas para mostrar</b>
+          </p>
+        }
+      >
+        <div className="row">
+          {peliculas.map((peli) => (
+            <Pelicula
+              key={`${peli.id}-${Math.random()}`}
+              img={peli.poster_path}
+              titulo={peli.title}
+              fecha={peli.release_date}
+              rating={peli.vote_average}
+              informacion={peli.overview}
+            />
+          ))}
+        </div>
+      </InfiniteScroll>
+    );
+  };
+
+  return (
+    <div className="container text-center">
+      <Rating
+        onClick={filtrar}
+        initialValue={0}
+        size={40}
+        transition
+        fillColor="orange"
+        emptyColor="gray"
+      />
+      {renderizarContenido()}
+    </div>
+  );
+}
