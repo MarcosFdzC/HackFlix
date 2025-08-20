@@ -63,10 +63,9 @@ export default function ListaPeliculas() {
   };
 
   const renderizarContenido = () => {
-    if (cargando && peliculas.length === 0) {
+    if (cargando && peliculas.length === 0)
       return <h4 style={{ marginTop: "20px" }}>Cargando...</h4>;
-    }
-    if (!cargando && peliculas.length === 0) {
+    if (!cargando && peliculas.length === 0)
       return (
         <p style={{ textAlign: "center", marginTop: "20px" }}>
           <b>
@@ -74,7 +73,6 @@ export default function ListaPeliculas() {
           </b>
         </p>
       );
-    }
     return (
       <InfiniteScroll
         dataLength={peliculas.length}
@@ -110,7 +108,7 @@ export default function ListaPeliculas() {
         initialValue={0}
         size={40}
         transition
-        fillColor="orange"
+        fillColor="#ffd700"
         emptyColor="gray"
       />
       {renderizarContenido()}

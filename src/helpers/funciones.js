@@ -7,15 +7,9 @@ export function posterUrl(path, size) {
 }
 
 export async function llamadaApi(pagina, filtro) {
-  let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=popularity.desc`;
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;
 
-  if (filtro > 0) {
-    url += `&vote_average.gte=${filtro}&vote_count.gte=50`;
-  }
-
-  //Funcion fetch
-  /*export async function llamadaApi(filtro) {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;*/
+  console.log("URL solicitada:", url);
 
   const options = {
     method: "GET",
