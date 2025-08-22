@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
 export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
   function ModalTarjetas(props) {
     return (
@@ -31,20 +32,26 @@ export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
     );
   }
   // logica
+  const navigate = useNavigate();
   const src = posterUrl(img, "w342");
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <div className="col-sm-6 col-md-4 col-lg-4 col-xl-3 d-flex justify-content-center">
       <div className="card" style={{ width: "15rem" }}>
-        <img src={src} className="card-img-top" alt={titulo} />
+        <img
+          src={src}
+          className="card-img-top"
+          alt={titulo}
+          onClick={() => setModalShow(true)}
+        />
         <div className="card-body">
           <h5 className="card-title">{titulo}</h5>
           <a
             href="#"
             className="btn btn-warning"
-            onClick={() => setModalShow(true)}
+            onClick={() => navigate(`Informacion-Pelicula-Completa`)}
           >
-            Mas informacion
+            Informacion Completa
           </a>
         </div>
         <ModalTarjetas show={modalShow} onHide={() => setModalShow(false)} />

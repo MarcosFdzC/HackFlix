@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
 import { Rating } from "react-simple-star-rating";
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfoCompleta from "./InfoCompleta";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
