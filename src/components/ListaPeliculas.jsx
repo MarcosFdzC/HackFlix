@@ -3,6 +3,7 @@ import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
 import FiltroEstrellas from "./FiltroEstrellas";
 import { Rating } from "react-simple-star-rating";
+import InfoCompleta from "./InfoCompleta";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
