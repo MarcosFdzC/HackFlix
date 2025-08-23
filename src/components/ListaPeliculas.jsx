@@ -3,6 +3,7 @@ import { llamadaApi } from "../helpers/funciones";
 import Pelicula from "./Pelicula";
 import { Rating } from "react-simple-star-rating";
 import InfoCompleta from "./InfoCompleta";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
