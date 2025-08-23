@@ -7,6 +7,7 @@ import FiltroEstrellas from "./components/FiltroEstrellas.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./HomePage.jsx";
 import InfoCompleta from "./components/InfoCompleta.jsx";
+import Error from "./components/Error";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/Informacion-Pelicula-Completa",
     element: <InfoCompleta />,
+  },
+  {
+    path: "/Error",
+    element: <Error />,
   },
 ]);
 
