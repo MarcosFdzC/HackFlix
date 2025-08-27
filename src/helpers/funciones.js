@@ -28,7 +28,7 @@ export async function llamadaApi(filtro) {
 }
 //Funcion filtrada por Id
 export async function llamadaFiltroId(id) {
-  const url = `https://api.themoviedb.org/3/network/{network_${id}}`;
+  const url = `https://api.themoviedb.org/3/network/${id}`;
 
   const options = {
     method: "GET",

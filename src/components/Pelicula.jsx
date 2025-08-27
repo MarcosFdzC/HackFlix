@@ -3,10 +3,17 @@ import { posterUrl } from "../helpers/funciones.js";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import React from "react";
-
-import { useNavigate } from "react-router-dom";
-export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
+import { Link, useNavigate } from "react-router-dom";
+export default function Pelicula({
+  img,
+  titulo,
+  informacion,
+  rating,
+  fecha,
+  id,
+}) {
   function ModalTarjetas(props) {
+    const navigate = useNavigate();
     return (
       <Modal
         {...props}
@@ -24,6 +31,11 @@ export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
           <p>Fecha de publicacion: "{fecha}" </p>
           <p>Informacion: {informacion}</p>
           <p>Rating: {rating}</p>
+          <Button
+            onClick={() => navigate(`/Informacion-Pelicula-Completa/${id}`)}
+          >
+            Mas informacion
+          </Button>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Cerrar</Button>
@@ -32,7 +44,7 @@ export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
     );
   }
   // logica
-  const navigate = useNavigate();
+
   const src = posterUrl(img, "w342");
   const [modalShow, setModalShow] = React.useState(false);
   return (
@@ -46,13 +58,13 @@ export default function Pelicula({ img, titulo, informacion, rating, fecha }) {
         />
         <div className="card-body">
           <h5 className="card-title">{titulo}</h5>
-          <a
-            href="#"
+
+          <Link
+            to={`/Informacion-Pelicula-Completa/${id}`}
             className="btn btn-warning"
-            onClick={() => navigate(`Informacion-Pelicula-Completa`)}
           >
             Informacion Completa
-          </a>
+          </Link>
         </div>
         <ModalTarjetas show={modalShow} onHide={() => setModalShow(false)} />
       </div>

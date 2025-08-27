@@ -34,7 +34,6 @@ export default function ListaPeliculas() {
         break;
     }
   };
-  console.log(peliculas);
   return (
     <div className="container text-center">
       <Rating onClick={filtrar}></Rating>
@@ -44,6 +43,7 @@ export default function ListaPeliculas() {
             key={peli.id}
             img={peli.poster_path}
             titulo={peli.title}
+            id={peli.id}
             fecha={peli.release_date}
             rating={peli.vote_average}
             informacion={peli.overview}
