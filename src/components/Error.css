@@ -1,0 +1,22 @@
+.contenedor {
+  color: #8b2635;
+  font-family: "Bebas Neue", cursive;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorH1 {
+  font-size: 5rem;
+  color: black;
+  background-color: #e4e2a4;
+  width: 100vw;
+  text-align: center;
+}
+.errorAnchor {
+  color: #8b2635;
+}
+.errorAnchor:hover {
+  color: #bf5e6d;
+}
