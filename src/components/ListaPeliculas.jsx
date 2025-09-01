@@ -107,7 +107,7 @@ export default function ListaPeliculas() {
   };
 
   return (
-    <div className="container text-center">
+    <div id="seccion-peliculas" className="container text-center">
       <Rating onClick={filtrar}></Rating>
       {renderizarContenido()}
     </div>
