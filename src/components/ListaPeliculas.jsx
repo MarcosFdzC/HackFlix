@@ -4,15 +4,29 @@ import Pelicula from "./Pelicula";
 import FiltroEstrellas from "./FiltroEstrellas";
 import { Rating } from "react-simple-star-rating";
 import InfoCompleta from "./InfoCompleta";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function ListaPeliculas() {
   const [peliculas, setPeliculas] = useState([]);
   const [filtro, setFiltro] = useState(0);
+  const [pagina, setPagina] = useState(1);
+  const [masPaginas, setMasPaginas] = useState(true);
+  const [cargando, setCargando] = useState(true);
   //Esta funcion llama a la api y guarda del resultado en peliculas
   useEffect(() => {
-    llamadaApi(filtro)
-      .then((resultado) => setPeliculas(resultado))
-      .catch((err) => console.error(err));
+    setCargando(true);
+    setPagina(1);
+    setMasPaginas(true);
+
+    llamadaApi(1, filtro)
+      .then((resultado) => {
+        setPeliculas(resultado);
+        setCargando(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setCargando(false);
+      });
   }, [filtro]);
   //con esta funcion interpretamos el rate y lo transformamos en el filtro que necesitamos
   const filtrar = (rate) => {
@@ -34,22 +48,68 @@ export default function ListaPeliculas() {
         break;
     }
   };
+
+  const cargarMasPeliculas = () => {
+    const paginaSiguiente = pagina + 1;
+    llamadaApi(paginaSiguiente, filtro)
+      .then((peliculasNuevas) => {
+        setPeliculas((peliculasActuales) => [
+          ...peliculasActuales,
+          ...peliculasNuevas,
+        ]);
+        if (peliculasNuevas.length === 0 || peliculasNuevas.length < 20) {
+          setMasPaginas(false);
+        }
+      })
+      .catch((err) => console.error(err));
+    setPagina(paginaSiguiente);
+  };
+
+  const renderizarContenido = () => {
+    if (cargando && peliculas.length === 0)
+      return <h4 className="text-center mt-4">Cargando...</h4>;
+    if (!cargando && peliculas.length === 0)
+      return (
+        <p className="text-center mt-4">
+          <b>
+            Lo sentimos, no se encontraron películas con el rating solicitado.
+          </b>
+        </p>
+      );
+
+    return (
+      <InfiniteScroll
+        dataLength={peliculas.length}
+        next={cargarMasPeliculas}
+        hasMore={masPaginas}
+        loader={<h4 className="text-center my-4">Cargando...</h4>}
+        endMessage={
+          <p className="text-center my-4">
+            <b>No hay más películas para mostrar</b>
+          </p>
+        }
+      >
+        <div className="row">
+          {peliculas.map((peli) => (
+            <Pelicula
+              key={`${peli.id}-${Math.random()}`}
+              img={peli.poster_path}
+              titulo={peli.title}
+              id={peli.id}
+              fecha={peli.release_date}
+              rating={peli.vote_average}
+              informacion={peli.overview}
+            />
+          ))}
+        </div>
+      </InfiniteScroll>
+    );
+  };
+
   return (
     <div className="container text-center">
       <Rating onClick={filtrar}></Rating>
-      <div className="row">
-        {peliculas.map((peli) => (
-          <Pelicula
-            key={peli.id}
-            img={peli.poster_path}
-            titulo={peli.title}
-            id={peli.id}
-            fecha={peli.release_date}
-            rating={peli.vote_average}
-            informacion={peli.overview}
-          ></Pelicula>
-        ))}
-      </div>
+      {renderizarContenido()}
     </div>
   );
 }

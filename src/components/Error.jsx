@@ -15,7 +15,7 @@ export default function () {
                 href="mailto: emaildecontacto@email.com?Subject=Error de la página"
               >
                 contact me
-              </a>
+              </a>{" "}
               to let me know what I broke
             </p>
           </div>
