@@ -3,7 +3,7 @@ import "./Header.css";
 import { Modal, Button, Form, Dropdown } from "react-bootstrap";
 import { llamadaGenerosApi } from "../helpers/funciones";
 
-export default function Header() {
+export default function Header({ seleccionarGenero }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const abrirModal = () => setMostrarModal(true);
   const cerrarModal = () => setMostrarModal(false);
@@ -51,8 +51,15 @@ export default function Header() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+              <Dropdown.Item onClick={() => seleccionarGenero(null)}>
+                Todos los géneros
+              </Dropdown.Item>
+
               {generos.map((genero) => (
-                <Dropdown.Item key={genero.id} href="#">
+                <Dropdown.Item
+                  key={genero.id}
+                  onClick={() => seleccionarGenero(genero.id)}
+                >
                   {genero.name}
                 </Dropdown.Item>
               ))}

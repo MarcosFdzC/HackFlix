@@ -6,9 +6,14 @@ export function posterUrl(path, size) {
   }
 }
 
-//Funcion fetch
-export async function llamadaApi(pagina, filtro) {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;
+/* Funcion fetch */
+
+export async function llamadaApi(pagina, filtro, idGenero) {
+  let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;
+
+  if (idGenero) {
+    url += `&with_genres=${idGenero}`;
+  }
 
   const options = {
     method: "GET",
@@ -26,7 +31,9 @@ export async function llamadaApi(pagina, filtro) {
   const data = await res.json();
   return data.results;
 }
-//Funcion filtrada por Id
+
+/* Funcion filtrada por id */
+
 export async function llamadaFiltroId(id) {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
 
