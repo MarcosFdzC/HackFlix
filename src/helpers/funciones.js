@@ -6,9 +6,14 @@ export function posterUrl(path, size) {
   }
 }
 
-//Funcion fetch
-export async function llamadaApi(pagina, filtro) {
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;
+/* Funcion fetch */
+
+export async function llamadaApi(pagina, filtro, idGenero) {
+  let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pagina}&sort_by=vote_average.asc&vote_average.gte=${filtro}&vote_count.gte=50`;
+
+  if (idGenero) {
+    url += `&with_genres=${idGenero}`;
+  }
 
   const options = {
     method: "GET",
@@ -26,7 +31,9 @@ export async function llamadaApi(pagina, filtro) {
   const data = await res.json();
   return data.results;
 }
-//Funcion filtrada por Id
+
+/* Funcion filtrada por id */
+
 export async function llamadaFiltroId(id) {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
 
@@ -45,4 +52,25 @@ export async function llamadaFiltroId(id) {
   }
   const data = await res.json();
   return data.results;
+}
+
+export async function llamadaGenerosApi() {
+  const url = `https://api.themoviedb.org/3/genre/movie/list?language=es`;
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWVhNDMyOTA4Y2I3NjFmM2VlNGM3ZDJkMTRjMGQ2OSIsIm5iZiI6MTc1NDk1NTUxMC4zMDMsInN1YiI6IjY4OWE3ZWY2YTEwMGZmZmYyMDVkMTdkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zvXAn13F1mvO1FG01juhFeI1qwBZ4Lgdxj3B-vlALkE",
+    },
+  };
+
+  const res = await fetch(url, options);
+  if (!res.ok) {
+    throw new Error("Error al intentar consumir la API de géneros");
+  }
+
+  const data = await res.json();
+  return data.genres;
 }

@@ -6,19 +6,19 @@ import { Rating } from "react-simple-star-rating";
 import InfoCompleta from "./InfoCompleta";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function ListaPeliculas() {
+export default function ListaPeliculas({ generoSeleccionado }) {
   const [peliculas, setPeliculas] = useState([]);
   const [filtro, setFiltro] = useState(0);
   const [pagina, setPagina] = useState(1);
   const [masPaginas, setMasPaginas] = useState(true);
   const [cargando, setCargando] = useState(true);
-  //Esta funcion llama a la api y guarda del resultado en peliculas
+
   useEffect(() => {
     setCargando(true);
     setPagina(1);
     setMasPaginas(true);
 
-    llamadaApi(1, filtro)
+    llamadaApi(1, filtro, generoSeleccionado)
       .then((resultado) => {
         setPeliculas(resultado);
         setCargando(false);
@@ -27,8 +27,8 @@ export default function ListaPeliculas() {
         console.error(err);
         setCargando(false);
       });
-  }, [filtro]);
-  //con esta funcion interpretamos el rate y lo transformamos en el filtro que necesitamos
+  }, [filtro, generoSeleccionado]);
+
   const filtrar = (rate) => {
     switch (rate) {
       case 1:
@@ -51,7 +51,7 @@ export default function ListaPeliculas() {
 
   const cargarMasPeliculas = () => {
     const paginaSiguiente = pagina + 1;
-    llamadaApi(paginaSiguiente, filtro)
+    llamadaApi(paginaSiguiente, filtro, generoSeleccionado)
       .then((peliculasNuevas) => {
         setPeliculas((peliculasActuales) => [
           ...peliculasActuales,
@@ -107,7 +107,7 @@ export default function ListaPeliculas() {
   };
 
   return (
-    <div className="container text-center">
+    <div id="seccion-peliculas" className="container text-center">
       <Rating onClick={filtrar}></Rating>
       {renderizarContenido()}
     </div>

@@ -43,7 +43,8 @@ export default function Pelicula({
       </Modal>
     );
   }
-  // logica
+
+/* logica */
 
   const src = posterUrl(img, "w342");
   const [modalShow, setModalShow] = React.useState(false);
