@@ -223,3 +223,33 @@
   background-color: #ffd700;
   color: #8b2635;
 }
+
+/* Estilos de las alertas */
+
+/* Alerta de éxito */
+.alert-success {
+  background-color: #333333;
+  color: #fffacd;
+  border: 2px solid #000000;
+}
+
+/* Alerta de error */
+.alert-danger {
+  background-color: #333333;
+  color: #fffacd;
+  border: 2px solid #000000;
+}
+
+.alert .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.alerta-flotante {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  max-width: 500px;
+  width: 90%;
+}
